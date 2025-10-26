@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 18th Anniversary!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+        /* Custom class to manage chart height and responsiveness */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Max width to prevent charts from being too wide */
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; /* Base height */
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px; /* Taller on desktop */
+            }
+        }
+    </style>
+</head>
+<body class="bg-rose-50 font-sans text-rose-800">
+    <!-- Chosen Palette: Warm Celebration (Rose Tones) --><!-- Application Structure Plan: The application is structured as a single-page app with a persistent side navigation bar and a main content area. This replaces the linear "slide" structure with an exploratory model. Users can navigate between four distinct thematic sections (Home, Numbers, Memories, Wish) in any order, allowing them to engage with the content at their own pace. This structure was chosen to transform the static slideshow concept into an interactive, modern web experience, making the simple, heartfelt content feel more dynamic and special. --><!-- Visualization & Content Choices: 
+        1. Report Info (Slide 1): "BIG GREETING" -> Goal: Inform/Welcome -> Viz/Presentation: "Home" section with a large title, text, and a prominent photo placeholder. -> Interaction: Default landing page. -> Justification: Directly translates the title slide into a warm, welcoming entry point. -> Library/Method: HTML/Tailwind.
+        2. Report Info (Slide 2): "AMAZING NUMBERS" (18 Years, 216 Months, etc.) -> Goal: Compare/Inform -> Viz/Presentation: Horizontal Bar Chart. -> Interaction: User navigates to this section; chart animates on view. -> Justification: Visually represents the scale of time in a much more engaging way than simple text, fulfilling the "quantitative data" requirement. -> Library/Method: Chart.js (Canvas).
+        3. ReportInfo (Slide 3): "OUR BEST MEMORIES" (3 specific points) -> Goal: Organize/Inform -> Viz/Presentation: A 3-column grid of "memory cards" plus photo placeholders. -> Justification: Organizes the qualitative insights from the "report" into a clean, easy-to-read, and visually appealing layout. -> Library/Method: HTML/Tailwind Grid.
+        4. Report Info (Slide 4): "A WISH FOR THE FUTURE" (Final message) -> Goal: Inform/Conclude -> Viz/Presentation: A final text-and-photo-placeholder section. -> Justification: Provides a clear and heartfelt conclusion to the application, mirroring the final slide. -> Library/Method: HTML/Tailwind. --><!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --><div class="flex flex-col md:flex-row min-h-screen">
+        
+        <nav class="w-full md:w-64 bg-rose-100 p-6 shadow-lg md:h-screen md:sticky md:top-0">
+            <h2 class="text-2xl font-bold mb-6 text-rose-900">🥳 Our Slideshow</h2>
+            <ul class="space-y-2">
+                <li>
+                    <button class="nav-btn w-full text-left p-3 rounded-lg font-medium text-rose-700 hover:bg-rose-200 transition-colors bg-rose-200 text-rose-900" data-target="home">
+                        🏠 The Big Greeting!
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-btn w-full text-left p-3 rounded-lg font-medium text-rose-700 hover:bg-rose-200 transition-colors" data-target="numbers" id="gurt">
+                        📊 Amazing Numbers
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-btn w-full text-left p-3 rounded-lg font-medium text-rose-700 hover:bg-rose-200 transition-colors" data-target="memories">
+                        ❤️ Our Best Memories
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-btn w-full text-left p-3 rounded-lg font-medium text-rose-700 hover:bg-rose-200 transition-colors" data-target="wish">
+                        💌 A Wish For You
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="flex-1 p-6 md:p-12 overflow-y-auto">
+
+            <section id="home" class="content-section">
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-lg text-rose-600 mb-6 font-bold" align="Center">Dear Mom and Dad, I love you so much today is your anniversary! </p>
+
+                    <h1 class="text-4xl md:text-6xl font-bold text-rose-800 mb-6">Happy 18th Anniversary, Mom and Dad!</h1>
+                    
+                    <!-- Modified image container for 'object-contain' on the main image --><div class="w-full h-96 rounded-lg shadow-xl mb-6 overflow-hidden border-4 border-rose-300 bg-rose-200 flex items-center justify-center">
+                        <!-- IMPORTANT: Replace the placeholder link in the 'src' below with the actual URL of your Mom and Dad's picture! --><!-- The 'object-contain' class here ensures the whole image is visible, preventing cropping --><img src="https://lh3.googleusercontent.com/pw/AP1GczMVPfLMawxCqkDBpwdPUPMWfrKZvdzTn9-Mo-FBnC8SuVrksumc5K0VocgLG81S6tcp7RIZ-4Wsb8kQmsGrS4UW-PD-ClsWb4BVxVrsB6pdTiQ9cLDSMb3mkCaXuC_wD6q33DvdZrF93AYT_SSR68NbtA=w465-h827-s-no-gm?authuser=0" alt="Mom and Dad celebrating their 18th anniversary" class="max-w-full max-h-full object-contain">
+                    </div>
+                    
+                    <p class="text-2xl text-center font-medium text-rose-700">
+                        Here are some fun emojis for you! ❤️ ⭐ 🥳 🎉 💖
+                    </p>
+                </div>
+            </section>
+
+            <section id="numbers" class="content-section hidden">
+                <div class="max-w-4xl mx-auto">
+                    <h1 class="text-4xl md:text-5xl font-bold text-rose-800 mb-6">18 Years is a LOT of Time!</h1>
+                    <p class="text-lg text-rose-600 mb-8">This section shows just how long you've been married, but using a fun chart instead of just text. The chart helps to show how all those days and weeks add up to 18 amazing years.</p>
+
+                    <div class="chart-container">
+                        <canvas id="timeChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="memories" class="content-section hidden">
+                <div class="max-w-4xl mx-auto">
+                    <h1 class="text-4xl md:text-5xl font-bold text-rose-800 mb-6">Thank You for Everything!</h1>
+                    <p class="text-lg text-rose-600 mb-8">This page is all about my favorite memories and the things I love most about you. I organized them into these three special cards so you can see each one clearly.</p>
+
+                    <div class="grid md:grid-cols-3 gap-6 mb-10">
+                        <div class="bg-rose-100 p-6 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-bold text-rose-700 mb-3">Best Food!</h3>
+                            <p class="text-lg text-rose-800">Thank you for always making my favorite FOOD !</p>
+                        </div>
+                        <div class="bg-rose-100 p-6 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-bold text-rose-700 mb-3">Best Times!</h3>
+                            <p class="text-lg text-rose-800">I love when we all play board games.</p>
+                        </div>
+                        <div class="bg-rose-100 p-6 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-bold text-rose-700 mb-3">Best in the World!</h3>
+                            <p class="text-lg text-rose-800">You are the best in the world when you give Lego sets!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="w-full h-64 rounded-lg shadow-md overflow-hidden border-4 border-rose-300 bg-rose-200 flex items-center justify-center">
+                            <!-- IMPORTANT: Replace the placeholder link in the 'src' below with the actual URL of your Mom's picture! --><img src="https://lh3.googleusercontent.com/pw/AP1GczMVPfLMawxCqkDBpwdPUPMWfrKZvdzTn9-Mo-FBnC8SuVrksumc5K0VocgLG81S6tcp7RIZ-4Wsb8kQmsGrS4UW-PD-ClsWb4BVxVrsB6pdTiQ9cLDSMb3mkCaXuC_wD6q33DvdZrF93AYT_SSR68NbtA=w465-h827-s-no-gm?authuser=0" alt="A nice picture of Mom" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <div class="w-full h-64 rounded-lg shadow-md overflow-hidden border-4 border-rose-300 bg-rose-200 flex items-center justify-center">
+                            <!-- IMPORTANT: Replace the placeholder link in the 'src' below with the actual URL of your Dad's picture! --><img src="https://lh3.googleusercontent.com/pw/AP1GczPM_g1FYwOxZm6iPMsI9JofbnfZWksRsty0FSycP3Bm4jl3Yb6jgMQwZlGCOmTkyLXVuJKLyt7sXwUv9wyrrfgrvFKux0n68vzWdajfI5Kuv39AzpXQTZ_wThmtu5ig34MzuTkWjdh50L-46WOMf77Zhw=w465-h827-s-no-gm?authuser=0" alt="A nice picture of Dad" class="max-w-full max-h-full object-contain">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="wish" class="content-section hidden">
+                <div class="max-w-4xl mx-auto">
+                    <h1 class="text-4xl md:text-5xl font-bold text-rose-800 mb-6">To Many More Happy Years!</h1>
+                    <p class="text-lg text-rose-600 mb-8">This is the final section, just like the last slide. It's my special wish for you and a reminder of how much you're loved. The picture here should be an old one to remember when it all started!</p>
+                    
+                    <div class="w-full h-80 rounded-lg shadow-xl mb-8 overflow-hidden border-4 border-rose-300 bg-rose-200 flex items-center justify-center">
+                        <!-- IMPORTANT: Replace the placeholder link in the 'src' below with the actual URL of an old picture of your parents! --><img src="https://lh3.googleusercontent.com/pw/AP1GczMbjhPAIF_4flQ24mp6-stV3X6V7YZ6sreLo8Li3X7MsIOvlcNvAsSxDhMfPdh1ahY3dtbcFsMaJxMPG6ubEJEJcg4G-t3MRji7T1z2GBayUVtQhYjPDdOf1D5rHUjGLvAcsU__x6YD7hRr2gxEO-GQZQ=w1380-h777-s-no-gm?authuser=0">
+                    </div>
+                    
+                    <p class="text-3xl font-bold text-rose-700 text-center mb-4">We hope you have the best anniversary ever! Thank you for being such an awesome team.</p>
+                    
+                    <p class="text-4xl font-bold text-rose-800 text-center mb-6">We love you!</p>
+                    
+                    <p class="text-2xl italic text-rose-700 text-center">From, Ananth and Abhaya</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const timeData = {
+                labels: ['Years', 'Months', 'Weeks', 'Days'],
+                datasets: [{
+                    label: 'Time Together!',
+                    data: [18, 216, 939, 6570],
+                    backgroundColor: [
+                        'rgba(190, 18, 60, 0.7)',
+                        'rgba(251, 113, 133, 0.7)',
+                        'rgba(253, 164, 175, 0.7)',
+                        'rgba(254, 205, 211, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgb(190, 18, 60)',
+                        'rgb(251, 113, 133)',
+                        'rgb(253, 164, 175)',
+                        'rgb(254, 205, 211)'
+                    ],
+                    borderWidth: 2
+                }]
+            };
+
+            const timeChartCtx = document.getElementById('timeChart')?.getContext('2d');
+            if (timeChartCtx) {
+                new Chart(timeChartCtx, {
+                    type: 'bar',
+                    data: timeData,
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return ` ${context.dataset.label}: ${context.raw}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Total Count'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            navButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetId = btn.dataset.target;
+
+                    contentSections.forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.classList.remove('hidden');
+                    }
+
+                    navButtons.forEach(b => {
+                        b.classList.remove('bg-rose-200', 'text-rose-900');
+                        b.classList.add('text-rose-700');
+                    });
+                    
+                    btn.classList.add('bg-rose-200', 'text-rose-900');
+                    btn.classList.remove('text-rose-700');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
